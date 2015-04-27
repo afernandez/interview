@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'interview',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,34 +51,26 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",                   # Allows accessing the session from the view template
+    "django.core.context_processors.static",
+)
+
 ROOT_URLCONF = 'interview.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
 WSGI_APPLICATION = 'interview.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'interview',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': '',             # set empty for localhost
+        'PORT': '3306'
     }
 }
 
@@ -95,6 +88,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'interview', 'templates').replace('\\', '/'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

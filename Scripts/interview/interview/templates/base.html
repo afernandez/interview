@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/theme.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/redmond/jquery-ui.css">
+    {% block javascript %}{% endblock %}
+</head>
+<body>
+    {% include "includes/nav.html" %}
+
+    <div style="clear: both;">
+    {% block content %}{% endblock %}
+    </div>
+    {% block footer %}
+    <hr>
+    <p>Thanks for visiting my site.</p>
+    {% endblock %}
+</body>
+</html>
